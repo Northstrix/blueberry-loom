@@ -3,6 +3,8 @@ Cryptographically reinforced form builder that utilizes ML-KEM-1024, as well as 
 
 Check it out at https://blueberry-loom.netlify.app/
 
+**You can set a password that contains non-ASCII characters.**
+
 ![Alt Hero section](https://raw.githubusercontent.com/Northstrix/blueberry-loom/refs/heads/main/screenshots/hero-section.png)
 ![Alt Hero section with language selector](https://raw.githubusercontent.com/Northstrix/blueberry-loom/refs/heads/main/screenshots/hero-section-with-language-selector.png)
 ![Alt Features section](https://raw.githubusercontent.com/Northstrix/blueberry-loom/refs/heads/main/screenshots/features-section.png)
