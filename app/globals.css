@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0a0a;
+  --background-adjacent-color: #2e2e2e;
+  --lightened-background-adjacent-color: #363636;
+  --second-degree-lightened-background-adjacent-color: #494949;
+  --subtle-color: #707070;
+  --foreground: #fff;
+  --slightly-subtle-foreground: #c1c1c1;
+  --theme-color: #00a0d8;
+  --theme-red: #ff2800;
+  --theme-green: #00bb3f;
+  --theme-yellow: #ff8400;
+  --muted-foreground: #aaa;
+  --inner-general-rounding: 7px;
+  --general-rounding: 8px;
+  --moderate-rounding: 12px;
+  --outer-moderate-rounding: 12.56px;
+  --outer-card-radius: 18.2px;
+  --inner-card-radius: 18px;
+  --card-background: #161616;
+  --input-outline: #909090;
+
+  --first-section-background: #000;
+  --second-section-background: #0B0B0F;
+  --feature-card-background: #131313;
+}
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', 'Helvetica Neue', Arial, 'sans-serif';
+}
+
+/* SweetAlert2 Popup Styling */
+.swal-custom-popup {
+  background-color: var(--card-background);
+  border: 1px solid var(--background-adjacent-color);
+  border-radius: var(--moderate-rounding);
+  color: var(--foreground);
+}
+
+.swal-custom-footer {
+  padding-top: 1.5em;
+  position: relative; /* Add this */
+}
+
+.swal-custom-footer::before { /* Add this new pseudo-element */
+  content: '';
+  position: absolute;
+  top: -5px; /* Position it 1px above the footer */
+  left: 0;
+  right: 0;
+  height: 10px;
+  background-color: var(--card-background);
+}
+
+a.btn_grd {
+  margin: auto;
+  padding: 1px;
+  align-items: center;
+  text-align: center;
+  background-image: linear-gradient(135deg, var(--theme-color), var(--theme-color));
+  border: 0;
+  border-radius: 8.34px;
+  color: var(--foreground);
+  font-weight: bold;
+  display: inline-flex; /* Change from flex to inline-flex */
+  justify-content: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  white-space: nowrap;
+  transition: all .3s;
+  position: relative;
+  z-index: 1;
+}
+
+a.btn_grd:active, a.btn_grd:hover {
+  outline: 0;
+}
+
+a.btn_grd span {
+  background: var(--card-background);
+  padding: 1rem 4rem;
+  border-radius: var(--general-rounding);
+  width: 100%;
+  height: 100%;
+  transition: 300ms;
+}
+
+a.btn_grd:hover span {
+  background: none;
+  color: var(--foreground);
+}
+
+/* RTL specific styles */
+a.btn_grd.rtl {
+  direction: rtl;
+}
+
+.rtl {
+  direction: rtl;
+}
+
+/* Error icon: border and X lines */
+.swal2-icon.swal2-error {
+  border-color: var(--theme-red) !important;
+  color: var(--theme-red) !important; /* fallback for icon content */
+}
+.swal2-icon.swal2-error [class^='swal2-x-mark-line'] {
+  background-color: var(--theme-red) !important;
+}
+
+/* Success icon: border and checkmark lines */
+.swal2-icon.swal2-success {
+  border-color: var(--theme-green) !important;
+  color: var(--theme-green) !important;
+}
+.swal2-icon.swal2-success [class^='swal2-success-line'] {
+  background-color: var(--theme-green) !important;
+}
+
+/* Warning icon: border and exclamation mark */
+.swal2-icon.swal2-warning {
+  border-color: var(--theme-yellow) !important;
+  color: var(--theme-yellow) !important;
+}
+.swal2-icon.swal2-warning .swal2-icon-content {
+  color: var(--theme-yellow) !important;
+}
+
+/* Info icon: border and "i" mark */
+.swal2-icon.swal2-info {
+  border-color: var(--theme-color) !important;
+  color: var(--theme-color) !important;
+}
+.swal2-icon.swal2-info .swal2-icon-content {
+  color: var(--theme-color) !important;
+}
+
+.swal2-loader {
+  border-color: var(--theme-color) transparent var(--theme-color) transparent !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-adjacent-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-color);
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-color) var(--background-adjacent-color);
+}
