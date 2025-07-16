@@ -7,6 +7,8 @@ Check it out at https://blueberry-loom.netlify.app/
 
 The article about how this web app was built and how it works—including the part that covers the cryptographic mechanisms ensuring only the intended recipient is capable of decrypting a submitted response, and explaining how it came to be that way—is available at https://medium.com/@Northstrix/creating-a-form-builder-powered-by-advanced-cryptography-d1e827a6ddd5
 
+SourceForge page with the version of the app where forms can be accessed using dedicated links instead of tags https://sourceforge.net/projects/blueberry-loom/
+
 The app is localized into the following languages:
 
 - **English**
