@@ -144,9 +144,9 @@ I assume you already have Node.js and npm installed.
     npm run dev
     ```
 
-7. Set up the [form loader](https://github.com/Northstrix/blueberry-loom-form-loader) *optional
+7. If you want to have the ability to share the forms by distributing their links - Set up the [form loader](https://github.com/Northstrix/blueberry-loom-form-loader)
 
-    7.1. Repalce the form loader base URL within the app with your own (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> -> https://blueberry-loom-form-loader.netlify.app)
+    7.1. Repalce the form loader base URL within this app with your own (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> -> https://blueberry-loom-form-loader.netlify.app)
 
 ## Credit
 
