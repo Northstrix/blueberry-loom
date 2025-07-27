@@ -394,23 +394,45 @@ export default function FormsSection({
       });
 
       // Build the shareable link with decryption key as base64
-      const appRoot = getAppRootUrl();
       const encodedEmail = encodeBase64Custom(userEmail);
       const keyParam = decryptedFormKey && decryptedFormKey instanceof Uint8Array ? encodeUint8ArrayToBase64Custom(decryptedFormKey) : "";
-      const link = `${encodedEmail}/${id}${keyParam ? `?key=${keyParam}` : ""}`;
-
+      const tag = `${encodedEmail}/${id}${keyParam ? `?key=${keyParam}` : ""}`;
+      const link = `https://blueberry-loom-form-loader.netlify.app/form/${encodedEmail}/${id}${
+        keyParam ? `?key=${keyParam}` : ""
+      }`;
       showClosableSuccessModal(
         t,
-        `<p style="margin-bottom:10px;" dir="${isRtl ? "rtl" : "ltr"}">${t(
-          "form-published successfully"
-        )}</p>
-        <p dir="${isRtl ? "rtl" : "ltr"}">${t(
-          "you-can-share-it-by-providing-the-tag-below-to-the-recipients"
-        )}</p>
-        <div style="margin-top: 16px; text-align: left;">
+        `<p style="margin-bottom:10px;" dir="${isRtl ? "rtl" : "ltr"}">
+          ${t("form-published successfully")}
+        </p>
+        <p style="margin-top: 16px;" dir="${isRtl ? "rtl" : "ltr"}">
+          ${t("you_can_share_this_form_by_providing_the_link_below_to_the_recipients")}
+        </p>
+        <div style="margin-top: 8px; text-align: left;">
+          <a
+            href="${link}"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="
+              font-family: monospace;
+              font-size: 0.875em;
+              word-break: break-all;
+              color: var(--theme-color);
+              text-decoration: underline;
+              cursor: pointer;
+              display: inline-block;
+            "
+          >
+            ${link}
+          </a>
+        </div>
+        <p style="margin-top: 16px;" dir="${isRtl ? "rtl" : "ltr"}">
+          ${t("alternatively_you_can_share_this_form_by_distributing_the_following_tag_to_the_recipients")}
+        </p>
+        <div style="margin-top: 8px; text-align: left;">
           <a
             style="font-family: monospace; font-size: 0.875em; word-break: break-all; color: var(--theme-color);">
-            ${link}
+              ${tag}
           </a>
         </div>`
       );

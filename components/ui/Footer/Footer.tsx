@@ -160,7 +160,14 @@ const Footer: React.FC<FooterProps> = ({
             rel="noopener noreferrer"
           >
             Next.js
-          </MadeByLink>{" "}
+          </MadeByLink>,{" "}
+          <MadeByLink
+            href="https://vuejs.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Vue.js
+          </MadeByLink>,{" "}
           and{" "}
           <MadeByLink
             href="https://www.perplexity.ai/"

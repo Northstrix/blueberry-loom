@@ -129,6 +129,7 @@ const FormInfoModal: React.FC<FormInfoModalProps> = ({
       ? formatResponseRate(responses, visits)
       : "--";
 
+let shareableTag = "";
 let shareableLink = "";
 
 function getAppRootUrl(): string {
@@ -182,7 +183,11 @@ if (isPublic) {
       ? encodeUint8ArrayToBase64Custom(form.decryptedFormKey)
       : "";
 
-  shareableLink = `${encodedEmail}/${form.id}${
+  shareableTag = `${encodedEmail}/${form.id}${
+    keyParam ? `?key=${keyParam}` : ""
+  }`;
+
+  shareableLink = `https://blueberry-loom-form-loader.netlify.app/form/${encodedEmail}/${form.id}${
     keyParam ? `?key=${keyParam}` : ""
   }`;
 }
@@ -268,7 +273,17 @@ if (isPublic) {
             </MetricsColumn>
             <Section>
               <Label>{t("shareable_tag")}:</Label>
+              <ShareableTag
+              >
+                {shareableTag}
+              </ShareableTag>
+            </Section>
+            <Section>
+              <Label>{t("shareable_link")}:</Label>
               <ShareableLink
+                href={shareableLink}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 {shareableLink}
               </ShareableLink>
@@ -481,9 +496,18 @@ const CloseButton = styled.button`
   }
 `;
 
+const ShareableTag = styled.a`
+  font-family: monospace;
+  color: var(--theme-color);
+  word-break: break-all;
+  font-size: 1.01rem;
+`;
+
 const ShareableLink = styled.a`
   font-family: monospace;
   color: var(--theme-color);
   word-break: break-all;
   font-size: 1.01rem;
+  text-decoration: underline;
+  cursor: pointer;
 `;

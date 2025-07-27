@@ -550,7 +550,7 @@ const FormRenderer: React.FC<FormRendererProps> = ({
                               e.preventDefault();
                               if (
                                 val === opt.value &&
-                                (el.allowUnselect ?? true)
+                                (true)
                               ) {
                                 setForm((f) => ({
                                   ...f,
@@ -572,7 +572,7 @@ const FormRenderer: React.FC<FormRendererProps> = ({
                                   onChange={(checked) => {
                                     if (
                                       val === opt.value &&
-                                      (el.allowUnselect ?? true)
+                                      (true)
                                     ) {
                                       setForm((f) => ({
                                         ...f,
@@ -587,7 +587,7 @@ const FormRenderer: React.FC<FormRendererProps> = ({
                                   }}
                                   accentColor={schema.meta.accentColor}
                                   highlightForeground={schema.meta.highlightForeground}
-                                  allowUnselect={el.allowUnselect}
+                                  allowUnselect={true}
                                   disabled={false}
                                   id={el.key + "-" + opt.value}
                                 />
@@ -599,7 +599,7 @@ const FormRenderer: React.FC<FormRendererProps> = ({
                                   onChange={(checked) => {
                                     if (
                                       val === opt.value &&
-                                      (el.allowUnselect ?? true)
+                                      (true)
                                     ) {
                                       setForm((f) => ({
                                         ...f,
@@ -614,7 +614,7 @@ const FormRenderer: React.FC<FormRendererProps> = ({
                                   }}
                                   accentColor={schema.meta.accentColor}
                                   highlightForeground={schema.meta.highlightForeground}
-                                  allowUnselect={el.allowUnselect}
+                                  allowUnselect={true}
                                   disabled={false}
                                   id={el.key + "-" + opt.value}
                                 />
@@ -732,7 +732,20 @@ const FormRenderer: React.FC<FormRendererProps> = ({
             }}
           >
             Next.js
-          </a>
+          </a>,
+          {" "}
+          <a
+            href="https://vuejs.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: "var(--theme-color)",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            Vue.js
+          </a>,
           {" "}and{" "}
           <a
             href="https://www.perplexity.ai/"

@@ -436,7 +436,6 @@ const RespondentFormRenderer: React.FC<RespondentFormRendererProps> = ({
     <div
       className="relative"
       style={{
-        minHeight: "100vh",
         background: "var(--background)",
         display: "flex",
         alignItems: "center",

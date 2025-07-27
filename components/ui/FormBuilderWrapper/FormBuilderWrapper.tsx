@@ -9,7 +9,6 @@ import {
   showClosableErrorModal,
   showProcessingModal,
   updateProcessingModal,
-  showClosableSuccessModal,
 } from "@/components/ui/Swal2Modals/Swal2Modals";
 import { useIsRtl } from "@/hooks/useIsRtl";
 import { useTranslation } from "react-i18next";
@@ -202,7 +201,7 @@ export default function FormBuilderWrapper({
 
   // Fetch fingerprint for new forms
   useEffect(() => {
-    if (mode === "new" && isAuthenticated) {
+    if ((mode === "new" && isAuthenticated) || (mode === "edit" && isAuthenticated)) {
       let isMounted = true;
       getPublicMlKem1024Fingerprint(userEmail).then(([fp, err]) => {
         if (!isMounted) return;
@@ -396,22 +395,46 @@ export default function FormBuilderWrapper({
         decryptedFormKey && decryptedFormKey instanceof Uint8Array
           ? encodeUint8ArrayToBase64Custom(decryptedFormKey)
           : "";
-      const link = `${encodedEmail}/${formId}${keyParam ? `?key=${keyParam}` : ""}`;
-
+      const tag = `${encodedEmail}/${formId}${keyParam ? `?key=${keyParam}` : ""}`;
+      const link = `https://blueberry-loom-form-loader.netlify.app/form/${encodedEmail}/${formId}${
+        keyParam ? `?key=${keyParam}` : ""
+      }`;
       await Swal.fire({
         icon: "success",
-        title: t("form-published successfully"),
-        html: `
-          <p style="margin-bottom:10px;" dir="${isRtl ? "rtl" : "ltr"}">${t(
-            "you-can-share-it-by-providing-the-tag-below-to-the-recipients"
-          )}</p>
-          <div style="margin-top: 16px; text-align: left;">
-            <a
-              style="font-family: monospace; font-size: 0.875em; word-break: break-all; color: var(--theme-color);">
-              ${link}
-            </a>
-          </div>
-        `,
+        title: t("success"),
+        html: `<p style="margin-bottom:10px;" dir="${isRtl ? "rtl" : "ltr"}">
+          ${t("form-published successfully")}
+        </p>
+        <p style="margin-top: 16px;" dir="${isRtl ? "rtl" : "ltr"}">
+          ${t("you_can_share_this_form_by_providing_the_link_below_to_the_recipients")}
+        </p>
+        <div style="margin-top: 8px; text-align: left;">
+          <a
+            href="${link}"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="
+              font-family: monospace;
+              font-size: 0.875em;
+              word-break: break-all;
+              color: var(--theme-color);
+              text-decoration: underline;
+              cursor: pointer;
+              display: inline-block;
+            "
+          >
+            ${link}
+          </a>
+        </div>
+        <p style="margin-top: 16px;" dir="${isRtl ? "rtl" : "ltr"}">
+          ${t("alternatively_you_can_share_this_form_by_distributing_the_following_tag_to_the_recipients")}
+        </p>
+        <div style="margin-top: 8px; text-align: left;">
+          <a
+            style="font-family: monospace; font-size: 0.875em; word-break: break-all; color: var(--theme-color);">
+              ${tag}
+          </a>
+        </div>`,
         width: 600,
         padding: "3em",
         color: "var(--foreground)",
