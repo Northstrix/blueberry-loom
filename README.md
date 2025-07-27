@@ -56,80 +56,80 @@ I assume you already have Node.js and npm installed.
     - Apply the following rules to your Firestore database:
 
       ```
-      rules_version = '2';
-      service cloud.firestore {
-        match /databases/{database}/documents {
-      
-          // === 1. /data/{userEmail}/forms/{formId} ===
-          match /data/{userEmail}/forms/{formId} {
-            // Allow anyone to increment visits or responses by +1, but only if form is public
-            allow update: if (
-              resource.data.isPublic == true &&
-              (
-                (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['visits']) && request.resource.data.visits == resource.data.visits + 1) ||
-                (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['responses']) && request.resource.data.responses == resource.data.responses + 1)
-              )
-            );
-      
-            // Allow get/list if public, or if the user is the owner and email is verified
-            allow get, list: if resource.data.isPublic == true
-              || (request.auth != null && request.auth.token.email == userEmail && request.auth.token.email_verified == true);
-      
-            // Allow create, update, delete only if the user is the owner and email is verified
-            allow create, update, delete: if request.auth != null && request.auth.token.email == userEmail && request.auth.token.email_verified == true;
-          }
-      
-          // === 1b. /data/{userEmail}/forms/{formId}/{document=**} ===
-          match /data/{userEmail}/forms/{formId}/{document=**} {
-            // Owner (with verified email) can read/write/delete
-            allow read, write, delete: if request.auth != null && request.auth.token.email == userEmail && request.auth.token.email_verified == true;
-      
-            // Anyone can get/list if parent form is public
-            allow get, list: if exists(/databases/$(database)/documents/data/$(userEmail)/forms/$(formId))
-              && get(/databases/$(database)/documents/data/$(userEmail)/forms/$(formId)).data.isPublic == true;
-          }
-      
-          // === 2. /data/{userEmail}/receivedResponses/{document=**} ===
-          match /data/{userEmail}/receivedResponses/{document=**} {
-            allow write: if request.auth != null; // Any authenticated user can write
-            allow read, delete: if request.auth != null && request.auth.token.email == userEmail; // Only owner can read/delete
-          }
-      
-          // === 2b. /data/{userEmail}/receivedBackups/{document=**} ===
-          match /data/{userEmail}/receivedBackups/{document=**} {
-            allow write: if true; // Anyone (including non-authenticated users) can write
-            allow read, delete: if request.auth != null && request.auth.token.email == userEmail; // Only owner can read/delete
-          }
-      
-          // === 3. /data/{userEmail}/public/{document=**} ===
-          match /data/{userEmail}/public/{document=**} {
-            allow read: if true; // Anyone can read
-            allow write, delete: if request.auth != null && request.auth.token.email == userEmail; // Only owner can write/delete
-          }
-      
-          // === 4. /data/{userEmail}/private/encrypted/formData/all/keys/{uniqueFormId} ===
-          match /data/{userEmail}/private/encrypted/formData/all/keys/{uniqueFormId} {
-            // Only owner with verified email can write/read
-            allow create, read, update, delete: if request.auth != null && request.auth.token.email == userEmail && request.auth.token.email_verified == true;
-          }
-      
-          // === 5. /data/{userEmail}/private/{document=**} ===
-          match /data/{userEmail}/private/{document=**} {
-            // Any authenticated user can read/write/delete their own private route (regardless of email verification)
-            allow read, write, delete: if request.auth != null && request.auth.token.email == userEmail;
-          }
-      
-          // === 6. /data/{userEmail}/private root ===
-          match /data/{userEmail}/private {
-            allow read, write, delete: if request.auth != null && request.auth.token.email == userEmail;
-          }
-      
-          // === 7. Default deny ===
-          match /{document=**} {
-            allow read, write, delete: if false;
+        rules_version = '2';
+        service cloud.firestore {
+          match /databases/{database}/documents {
+        
+            // === 1. /data/{userEmail}/forms/{formId} ===
+            match /data/{userEmail}/forms/{formId} {
+              // Allow anyone to increment visits or responses by +1, but only if form is public
+              allow update: if (
+                resource.data.isPublic == true &&
+                (
+                  (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['visits']) && request.resource.data.visits == resource.data.visits + 1) ||
+                  (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['responses']) && request.resource.data.responses == resource.data.responses + 1)
+                )
+              );
+        
+              // Allow get/list if public, or if the user is the owner and email is verified
+              allow get, list: if resource.data.isPublic == true
+                || (request.auth != null && request.auth.token.email == userEmail && request.auth.token.email_verified == true);
+        
+              // Allow create, update, delete only if the user is the owner and email is verified
+              allow create, update, delete: if request.auth != null && request.auth.token.email == userEmail && request.auth.token.email_verified == true;
+            }
+        
+            // === 1b. /data/{userEmail}/forms/{formId}/{document=**} ===
+            match /data/{userEmail}/forms/{formId}/{document=**} {
+              // Owner (with verified email) can read/write/delete
+              allow read, write, delete: if request.auth != null && request.auth.token.email == userEmail && request.auth.token.email_verified == true;
+        
+              // Anyone can get/list if parent form is public
+              allow get, list: if exists(/databases/$(database)/documents/data/$(userEmail)/forms/$(formId))
+                && get(/databases/$(database)/documents/data/$(userEmail)/forms/$(formId)).data.isPublic == true;
+            }
+        
+            // === 2. /data/{userEmail}/receivedResponses/{document=**} ===
+            match /data/{userEmail}/receivedResponses/{document=**} {
+              allow write: if true; // Anyone (including non-authenticated users) can write
+              allow read, delete: if request.auth != null && request.auth.token.email == userEmail; // Only owner can read/delete
+            }
+        
+            // === 2b. /data/{userEmail}/receivedBackups/{document=**} ===
+            match /data/{userEmail}/receivedBackups/{document=**} {
+              allow write: if true; // Anyone (including non-authenticated users) can write
+              allow read, delete: if request.auth != null && request.auth.token.email == userEmail; // Only owner can read/delete
+            }
+        
+            // === 3. /data/{userEmail}/public/{document=**} ===
+            match /data/{userEmail}/public/{document=**} {
+              allow read: if true; // Anyone can read
+              allow write, delete: if request.auth != null && request.auth.token.email == userEmail; // Only owner can write/delete
+            }
+        
+            // === 4. /data/{userEmail}/private/encrypted/formData/all/keys/{uniqueFormId} ===
+            match /data/{userEmail}/private/encrypted/formData/all/keys/{uniqueFormId} {
+              // Only owner with verified email can write/read
+              allow create, read, update, delete: if request.auth != null && request.auth.token.email == userEmail && request.auth.token.email_verified == true;
+            }
+        
+            // === 5. /data/{userEmail}/private/{document=**} ===
+            match /data/{userEmail}/private/{document=**} {
+              // Any authenticated user can read/write/delete their own private route (regardless of email verification)
+              allow read, write, delete: if request.auth != null && request.auth.token.email == userEmail;
+            }
+        
+            // === 6. /data/{userEmail}/private root ===
+            match /data/{userEmail}/private {
+              allow read, write, delete: if request.auth != null && request.auth.token.email == userEmail;
+            }
+        
+            // === 7. Default deny ===
+            match /{document=**} {
+              allow read, write, delete: if false;
+            }
           }
         }
-      }
       ```
 
 5. Install dependencies by running:
@@ -143,6 +143,10 @@ I assume you already have Node.js and npm installed.
     ```
     npm run dev
     ```
+
+7. Set up the [form loader](https://github.com/Northstrix/blueberry-loom-form-loader) *optional
+
+8. Repalce the form loader base URL within the app with your own (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> -> https://blueberry-loom-form-loader.netlify.app)
 
 ## Credit
 
