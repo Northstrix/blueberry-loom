@@ -146,7 +146,7 @@ I assume you already have Node.js and npm installed.
 
 7. Set up the [form loader](https://github.com/Northstrix/blueberry-loom-form-loader) *optional
 
-8. Repalce the form loader base URL within the app with your own (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> -> https://blueberry-loom-form-loader.netlify.app)
+    7.1. Repalce the form loader base URL within the app with your own (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> -> https://blueberry-loom-form-loader.netlify.app)
 
 ## Credit
 
