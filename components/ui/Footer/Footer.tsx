@@ -162,11 +162,11 @@ const Footer: React.FC<FooterProps> = ({
             Next.js
           </MadeByLink>,{" "}
           <MadeByLink
-            href="https://vuejs.org/"
+            href="https://nuxt.com/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Vue.js
+            Nuxt
           </MadeByLink>,{" "}
           and{" "}
           <MadeByLink

@@ -238,7 +238,8 @@ if (isPublic) {
         {!isPublic && (
           <Section>
             <Label>{t("created_at")}:</Label>
-            <Value>
+            {/* Add dir attribute here */}
+            <Value dir={isRtl ? "rtl" : "ltr"}>
               {createdAt ? formatDateUtil(createdAt, language) : "--"}
             </Value>
           </Section>
@@ -246,7 +247,8 @@ if (isPublic) {
         {isPublic && (
           <Section>
             <Label>{t("published_at")}:</Label>
-            <Value>
+            {/* Add dir attribute here */}
+            <Value dir={isRtl ? "rtl" : "ltr"}>
               {publicationDate ? formatDateUtil(publicationDate, language) : "--"}
             </Value>
           </Section>
@@ -434,6 +436,7 @@ const Value = styled.div`
   color: var(--foreground, #fff);
   font-size: 1.04rem;
   font-weight: 500;
+  text-align: left;
 `;
 
 const Status = styled.div<{ $ok: boolean }>`

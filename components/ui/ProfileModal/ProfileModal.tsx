@@ -198,11 +198,11 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
           </div>
           <div className="flex flex-row flex-wrap items-baseline w-full break-all">
             <span className="font-medium text-[var(--subtle-color)] select-text">{t("account_created")}:</span>
-            <span className="ml-2 break-all select-text">{accountCreated}</span>
+            <span className="ml-2 break-all select-text" dir={isRtl ? "rtl" : "ltr"}>{accountCreated}</span>
           </div>
           <div className="flex flex-row flex-wrap items-baseline w-full break-all">
             <span className="font-medium text-[var(--subtle-color)] select-text">{t("last_login")}:</span>
-            <span className="ml-2 break-all select-text">{lastLogin}</span>
+            <span className="ml-2 break-all select-text" dir={isRtl ? "rtl" : "ltr"}>{lastLogin}</span>
           </div>
           <div className="flex flex-row flex-wrap items-baseline w-full break-all">
             <span className="font-medium text-[var(--subtle-color)] select-text">{t("mlkem_public_key_fingerprint")}:</span>

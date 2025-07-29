@@ -735,7 +735,7 @@ const FormRenderer: React.FC<FormRendererProps> = ({
           </a>,
           {" "}
           <a
-            href="https://vuejs.org/"
+            href="https://nuxt.com/"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -744,7 +744,7 @@ const FormRenderer: React.FC<FormRendererProps> = ({
               cursor: "pointer",
             }}
           >
-            Vue.js
+            Nuxt
           </a>,
           {" "}and{" "}
           <a
