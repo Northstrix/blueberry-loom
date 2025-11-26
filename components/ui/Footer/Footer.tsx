@@ -86,6 +86,12 @@ const Footer: React.FC<FooterProps> = ({
   // LanguageSelector modal ref
   const languageSelectorRef = useRef<LanguageSelectorHandle>(null);
 
+  const [justOpenSourceLogoLoaded, setJustOpenSourceLogoLoaded] = useState(false);
+  const [verifiedToolsLogoLoaded, setVerifiedToolsLogoLoaded] = useState(false);
+  const [twelveToolsLogoLoaded, setTwelveToolsLogoLoaded] = useState(false);
+  const [auraPlusPlusLogoLoaded, setAuraPlusPlusLogoLoaded] = useState(false);
+  const [startupFameLogoLoaded, setStartupFameLogoLoaded] = useState(false);
+
   // --- Responsive measurement effect ---
   useEffect(() => {
     function measureHeights() {
@@ -191,6 +197,260 @@ const Footer: React.FC<FooterProps> = ({
           <AnimatedTooltip items={languageTooltipItems} isRTL={isRtl} showTooltip={showLanguageTooltip} />
         </LanguageIconContainer>
       )}
+      <div
+        style={{
+          position: "relative",
+          width: 240,
+          height: "auto",
+        }}
+      >
+        {/* Faint background logo for JustOpenSource */}
+        <img
+          src="https://justopensource.xyz/logo.png"
+          alt="Background Logo"
+          onLoad={() => setJustOpenSourceLogoLoaded(true)}
+          onError={() => setJustOpenSourceLogoLoaded(false)}
+          style={{
+            display: justOpenSourceLogoLoaded ? "block" : "none",
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%,-50%)",
+            zIndex: 0,
+            width: 160,
+            opacity: 0.15,
+            pointerEvents: "none",
+          }}
+        />
+
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 8,
+          }}
+        >
+          {/* JustOpenSource badge – independent */}
+          {justOpenSourceLogoLoaded && (
+            <a
+              href="https://justopensource.xyz/tools/Northstrix-blueberry-loom"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                width: 240,
+                padding: 10,
+                border: "2px solid oklch(0.685 0.169 237.323)",
+                borderRadius: 8,
+                boxShadow: "rgba(0, 0, 0, 0.1) 0px 1px 2px",
+                textDecoration: "none",
+                backgroundColor: "white",
+                transition: "background-color 0.3s",
+              }}
+            >
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <img
+                  src="https://justopensource.xyz/logo.png"
+                  alt="JustOpenSource"
+                  style={{ width: 80 }}
+                  draggable={false}
+                  loading="lazy"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).style.display = "none";
+                    setJustOpenSourceLogoLoaded(false);
+                  }}
+                />
+                <p
+                  style={{
+                    fontSize: "1.125rem",
+                    color: "#4b5563",
+                    margin: "4px 0 0",
+                    fontWeight: 400,
+                  }}
+                >
+                  Tool Of The Week
+                </p>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={48}
+                height={48}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#facc15"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-trophy-icon lucide-trophy"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978" />
+                <path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978" />
+                <path d="M18 9h1.5a1 1 0 0 0 0-5H18" />
+                <path d="M4 22h16" />
+                <path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z" />
+                <path d="M6 9H4.5a1 1 0 0 1 0-5H6" />
+              </svg>
+            </a>
+          )}
+        </div>
+      </div>
+      <div style={{ position: "relative", width: 240, height: "auto" }}>
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 8,
+          }}
+        >
+          <a
+            href={verifiedToolsLogoLoaded ? "https://www.verifiedtools.info" : undefined}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: 240,
+              padding: 4,
+              textDecoration: "none",
+              pointerEvents: verifiedToolsLogoLoaded ? "auto" : "none",
+            }}
+          >
+            <img
+              src="https://www.verifiedtools.info/badge.png"
+              {...(verifiedToolsLogoLoaded
+                ? { alt: "Verified on Verified Tools" }
+                : { alt: "" })}
+              width={200}
+              height={54}
+              loading="lazy"
+              onLoad={() => setVerifiedToolsLogoLoaded(true)}
+              onError={() => setVerifiedToolsLogoLoaded(false)}
+              style={{
+                borderRadius: 6,
+                opacity: verifiedToolsLogoLoaded ? 1 : 0.01,
+                height: verifiedToolsLogoLoaded ? "auto" : "1px",
+                transition: "opacity 0.2s ease-out",
+              }}
+            />
+          </a>
+        </div>
+      </div>
+      {isMobile && (
+        <>
+          {/* Twelve Tools badge */}
+          <a
+            href={twelveToolsLogoLoaded ? "https://twelve.tools" : undefined}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: 240,
+              padding: 4,
+              textDecoration: "none",
+              pointerEvents: twelveToolsLogoLoaded ? "auto" : "none",
+            }}
+          >
+            <img
+              src="https://twelve.tools/badge0-white.svg"
+              alt={twelveToolsLogoLoaded ? "Featured on Twelve Tools" : ""}
+              width={200}
+              height={54}
+              loading="lazy"
+              onLoad={() => setTwelveToolsLogoLoaded(true)}
+              onError={() => setTwelveToolsLogoLoaded(false)}
+              style={{
+                borderRadius: 6,
+                opacity: twelveToolsLogoLoaded ? 1 : 0.01,
+                height: twelveToolsLogoLoaded ? "auto" : "1px",
+                transition: "opacity 0.2s ease-out",
+              }}
+            />
+          </a>
+
+          {/* Aura++ badge */}
+          <a
+            href={auraPlusPlusLogoLoaded ? "https://auraplusplus.com/projects/blueberry-loom" : undefined}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: 240,
+              padding: 4,
+              textDecoration: "none",
+              pointerEvents: auraPlusPlusLogoLoaded ? "auto" : "none",
+            }}
+          >
+            <img
+              src="https://auraplusplus.com/images/badges/featured-on-dark.svg"
+              alt={auraPlusPlusLogoLoaded ? "Featured on Aura++" : ""}
+              width={200}
+              height={54}
+              loading="lazy"
+              onLoad={() => setAuraPlusPlusLogoLoaded(true)}
+              onError={() => setAuraPlusPlusLogoLoaded(false)}
+              style={{
+                borderRadius: 6,
+                opacity: auraPlusPlusLogoLoaded ? 1 : 0.01,
+                height: auraPlusPlusLogoLoaded ? "auto" : "1px",
+                transition: "opacity 0.2s ease-out",
+              }}
+            />
+          </a>
+
+          {/* Startup Fame badge */}
+          <a
+            href={
+              startupFameLogoLoaded
+                ? "https://startupfa.me/s/blueberry-loom.netlify.app?utm_source=blueberry-loom.netlify.app"
+                : undefined
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: 240,
+              padding: 4,
+              textDecoration: "none",
+              pointerEvents: startupFameLogoLoaded ? "auto" : "none",
+            }}
+          >
+            <img
+              src="https://startupfa.me/badges/featured/dark.webp"
+              alt={startupFameLogoLoaded ? "Blueberry Loom - Featured on Startup Fame" : ""}
+              width={171}
+              height={54}
+              loading="lazy"
+              onLoad={() => setStartupFameLogoLoaded(true)}
+              onError={() => setStartupFameLogoLoaded(false)}
+              style={{
+                borderRadius: 6,
+                opacity: startupFameLogoLoaded ? 1 : 0.01,
+                height: startupFameLogoLoaded ? "auto" : "1px",
+                transition: "opacity 0.2s ease-out",
+              }}
+            />
+          </a>
+        </>
+      )}
     </FooterCol>
   );
 
@@ -253,6 +513,109 @@ const Footer: React.FC<FooterProps> = ({
           )
         )}
       </NavLinks>
+      {!isMobile && (
+        <>
+          {/* Twelve Tools badge */}
+          <a
+            href={twelveToolsLogoLoaded ? "https://twelve.tools" : undefined}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: 240,
+              padding: 4,
+              textDecoration: "none",
+              pointerEvents: twelveToolsLogoLoaded ? "auto" : "none",
+            }}
+          >
+            <img
+              src="https://twelve.tools/badge0-white.svg"
+              alt={twelveToolsLogoLoaded ? "Featured on Twelve Tools" : ""}
+              width={200}
+              height={54}
+              loading="lazy"
+              onLoad={() => setTwelveToolsLogoLoaded(true)}
+              onError={() => setTwelveToolsLogoLoaded(false)}
+              style={{
+                borderRadius: 6,
+                opacity: twelveToolsLogoLoaded ? 1 : 0.01,
+                height: twelveToolsLogoLoaded ? "auto" : "1px",
+                transition: "opacity 0.2s ease-out",
+              }}
+            />
+          </a>
+
+          {/* Aura++ badge */}
+          <a
+            href={auraPlusPlusLogoLoaded ? "https://auraplusplus.com/projects/blueberry-loom" : undefined}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: 240,
+              padding: 4,
+              textDecoration: "none",
+              pointerEvents: auraPlusPlusLogoLoaded ? "auto" : "none",
+            }}
+          >
+            <img
+              src="https://auraplusplus.com/images/badges/featured-on-dark.svg"
+              alt={auraPlusPlusLogoLoaded ? "Featured on Aura++" : ""}
+              width={200}
+              height={54}
+              loading="lazy"
+              onLoad={() => setAuraPlusPlusLogoLoaded(true)}
+              onError={() => setAuraPlusPlusLogoLoaded(false)}
+              style={{
+                borderRadius: 6,
+                opacity: auraPlusPlusLogoLoaded ? 1 : 0.01,
+                height: auraPlusPlusLogoLoaded ? "auto" : "1px",
+                transition: "opacity 0.2s ease-out",
+              }}
+            />
+          </a>
+
+          {/* Startup Fame badge */}
+          <a
+            href={
+              startupFameLogoLoaded
+                ? "https://startupfa.me/s/blueberry-loom.netlify.app?utm_source=blueberry-loom.netlify.app"
+                : undefined
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: 240,
+              padding: 4,
+              textDecoration: "none",
+              pointerEvents: startupFameLogoLoaded ? "auto" : "none",
+            }}
+          >
+            <img
+              src="https://startupfa.me/badges/featured/dark.webp"
+              alt={startupFameLogoLoaded ? "Blueberry Loom - Featured on Startup Fame" : ""}
+              width={171}
+              height={54}
+              loading="lazy"
+              onLoad={() => setStartupFameLogoLoaded(true)}
+              onError={() => setStartupFameLogoLoaded(false)}
+              style={{
+                borderRadius: 6,
+                opacity: startupFameLogoLoaded ? 1 : 0.01,
+                height: startupFameLogoLoaded ? "auto" : "1px",
+                transition: "opacity 0.2s ease-out",
+              }}
+            />
+          </a>
+        </>
+      )}
     </FooterCol>
   );
 
@@ -517,19 +880,19 @@ const NavLink = styled.a`
 `;
 // --- Language Icon Container (desktop: absolute at bottom, mobile: margin-top) ---
 const LanguageIconContainer = styled.div`
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
+  position: relative;
   z-index: 10;
-  width: auto;
+  width: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 16px; /* Add space between icon and first badge */
   pointer-events: auto;
+
   @media (max-width: 900px) {
     display: none;
   }
 `;
+
 const LanguageIconMobileSpacer = styled.div`
   display: none;
   @media (max-width: 900px) {
