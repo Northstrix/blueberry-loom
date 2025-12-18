@@ -90,7 +90,9 @@ const Footer: React.FC<FooterProps> = ({
   const [verifiedToolsLogoLoaded, setVerifiedToolsLogoLoaded] = useState(false);
   const [twelveToolsLogoLoaded, setTwelveToolsLogoLoaded] = useState(false);
   const [auraPlusPlusLogoLoaded, setAuraPlusPlusLogoLoaded] = useState(false);
-  const [startupFameLogoLoaded, setStartupFameLogoLoaded] = useState(false);
+  const [launchItLogoLoaded, setLaunchItLogoLoaded] = useState(false);
+  const [founderListLogoLoaded, setFounderListLogoLoaded] = useState(false);
+  const [turbo0LogoLoaded, setTurbo0LogoLoaded] = useState(false);
 
   // --- Responsive measurement effect ---
   useEffect(() => {
@@ -301,6 +303,7 @@ const Footer: React.FC<FooterProps> = ({
             </a>
           )}
         </div>
+        
       </div>
       <div style={{ position: "relative", width: 240, height: "auto" }}>
         <div
@@ -348,35 +351,77 @@ const Footer: React.FC<FooterProps> = ({
           </a>
         </div>
       </div>
+      {/* Foundrlist badge */}
+      <div>
+        <a
+          href={
+            founderListLogoLoaded
+              ? "https://www.foundrlist.com/product/blueberryloom"
+              : undefined
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "inline-flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: 240,
+            padding: 4,
+            textDecoration: "none",
+            pointerEvents: founderListLogoLoaded ? "auto" : "none",
+          }}
+        >
+          <img
+            src="https://www.foundrlist.com/api/badge/blueberryloom?style=featured"
+            alt={founderListLogoLoaded ? "Blueberry Loom on Foundrlist" : ""}
+            width={200}
+            height={64}
+            loading="lazy"
+            onLoad={() => setFounderListLogoLoaded(true)}
+            onError={() => setFounderListLogoLoaded(false)}
+            style={{
+              borderRadius: 6,
+              opacity: founderListLogoLoaded ? 1 : 0.01,
+              height: founderListLogoLoaded ? 64 : 1,
+              transition: "opacity 0.2s ease-out",
+            }}
+          />
+        </a>
+      </div>
+
       {isMobile && (
         <>
-          {/* Twelve Tools badge */}
+          {/* LaunchIt badge */}
           <a
-            href={twelveToolsLogoLoaded ? "https://twelve.tools" : undefined}
+            href={
+              launchItLogoLoaded
+                ? "https://launchit.site/launches/blueberry-loom"
+                : undefined
+            }
             target="_blank"
             rel="noopener noreferrer"
             style={{
               display: "inline-flex",
               justifyContent: "center",
               alignItems: "center",
-              width: 240,
+              width: 258,
               padding: 4,
               textDecoration: "none",
-              pointerEvents: twelveToolsLogoLoaded ? "auto" : "none",
+              pointerEvents: launchItLogoLoaded ? "auto" : "none",
             }}
           >
             <img
-              src="https://twelve.tools/badge0-white.svg"
-              alt={twelveToolsLogoLoaded ? "Featured on Twelve Tools" : ""}
-              width={200}
+              src="https://launchit.site/badges/featured-light-v2.svg"
+              alt={launchItLogoLoaded ? "Blueberry Loom - Featured on LaunchIt" : ""}
+              width={250}
               height={54}
               loading="lazy"
-              onLoad={() => setTwelveToolsLogoLoaded(true)}
-              onError={() => setTwelveToolsLogoLoaded(false)}
+              onLoad={() => setLaunchItLogoLoaded(true)}
+              onError={() => setLaunchItLogoLoaded(false)}
               style={{
                 borderRadius: 6,
-                opacity: twelveToolsLogoLoaded ? 1 : 0.01,
-                height: twelveToolsLogoLoaded ? "auto" : "1px",
+                opacity: launchItLogoLoaded ? 1 : 0.01,
+                height: launchItLogoLoaded ? "auto" : "1px",
                 transition: "opacity 0.2s ease-out",
               }}
             />
@@ -414,13 +459,9 @@ const Footer: React.FC<FooterProps> = ({
             />
           </a>
 
-          {/* Startup Fame badge */}
+          {/* Twelve Tools badge */}
           <a
-            href={
-              startupFameLogoLoaded
-                ? "https://startupfa.me/s/blueberry-loom.netlify.app?utm_source=blueberry-loom.netlify.app"
-                : undefined
-            }
+            href={twelveToolsLogoLoaded ? "https://twelve.tools" : undefined}
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -430,25 +471,62 @@ const Footer: React.FC<FooterProps> = ({
               width: 240,
               padding: 4,
               textDecoration: "none",
-              pointerEvents: startupFameLogoLoaded ? "auto" : "none",
+              pointerEvents: twelveToolsLogoLoaded ? "auto" : "none",
             }}
           >
             <img
-              src="https://startupfa.me/badges/featured/dark.webp"
-              alt={startupFameLogoLoaded ? "Blueberry Loom - Featured on Startup Fame" : ""}
-              width={171}
+              src="https://twelve.tools/badge0-white.svg"
+              alt={twelveToolsLogoLoaded ? "Featured on Twelve Tools" : ""}
+              width={200}
               height={54}
               loading="lazy"
-              onLoad={() => setStartupFameLogoLoaded(true)}
-              onError={() => setStartupFameLogoLoaded(false)}
+              onLoad={() => setTwelveToolsLogoLoaded(true)}
+              onError={() => setTwelveToolsLogoLoaded(false)}
               style={{
                 borderRadius: 6,
-                opacity: startupFameLogoLoaded ? 1 : 0.01,
-                height: startupFameLogoLoaded ? "auto" : "1px",
+                opacity: twelveToolsLogoLoaded ? 1 : 0.01,
+                height: twelveToolsLogoLoaded ? "auto" : "1px",
                 transition: "opacity 0.2s ease-out",
               }}
             />
           </a>
+
+          {/* Turbo0 badge */}
+          <div>
+            <a
+              href={
+                turbo0LogoLoaded
+                  ? "https://turbo0.com/item/blueberry-loom"
+                  : undefined
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: 240,
+                padding: 4,
+                textDecoration: "none",
+                pointerEvents: turbo0LogoLoaded ? "auto" : "none",
+              }}
+            >
+              <img
+                src="https://img.turbo0.com/badge-listed-dark.svg"
+                alt={turbo0LogoLoaded ? "Listed on Turbo0" : ""}
+                loading="lazy"
+                onLoad={() => setTurbo0LogoLoaded(true)}
+                onError={() => setTurbo0LogoLoaded(false)}
+                style={{
+                  borderRadius: 6,
+                  height: turbo0LogoLoaded ? 54 : 1,
+                  width: "auto",
+                  opacity: turbo0LogoLoaded ? 1 : 0.01,
+                  transition: "opacity 0.2s ease-out",
+                }}
+              />
+            </a>
+          </div>
         </>
       )}
     </FooterCol>
@@ -515,33 +593,37 @@ const Footer: React.FC<FooterProps> = ({
       </NavLinks>
       {!isMobile && (
         <>
-          {/* Twelve Tools badge */}
+          {/* LaunchIt badge */}
           <a
-            href={twelveToolsLogoLoaded ? "https://twelve.tools" : undefined}
+            href={
+              launchItLogoLoaded
+                ? "https://launchit.site/launches/blueberry-loom"
+                : undefined
+            }
             target="_blank"
             rel="noopener noreferrer"
             style={{
               display: "inline-flex",
               justifyContent: "center",
               alignItems: "center",
-              width: 240,
+              width: 258,
               padding: 4,
               textDecoration: "none",
-              pointerEvents: twelveToolsLogoLoaded ? "auto" : "none",
+              pointerEvents: launchItLogoLoaded ? "auto" : "none",
             }}
           >
             <img
-              src="https://twelve.tools/badge0-white.svg"
-              alt={twelveToolsLogoLoaded ? "Featured on Twelve Tools" : ""}
-              width={200}
+              src="https://launchit.site/badges/featured-light-v2.svg"
+              alt={launchItLogoLoaded ? "Blueberry Loom - Featured on LaunchIt" : ""}
+              width={250}
               height={54}
               loading="lazy"
-              onLoad={() => setTwelveToolsLogoLoaded(true)}
-              onError={() => setTwelveToolsLogoLoaded(false)}
+              onLoad={() => setLaunchItLogoLoaded(true)}
+              onError={() => setLaunchItLogoLoaded(false)}
               style={{
                 borderRadius: 6,
-                opacity: twelveToolsLogoLoaded ? 1 : 0.01,
-                height: twelveToolsLogoLoaded ? "auto" : "1px",
+                opacity: launchItLogoLoaded ? 1 : 0.01,
+                height: launchItLogoLoaded ? "auto" : "1px",
                 transition: "opacity 0.2s ease-out",
               }}
             />
@@ -579,13 +661,9 @@ const Footer: React.FC<FooterProps> = ({
             />
           </a>
 
-          {/* Startup Fame badge */}
+          {/* Twelve Tools badge */}
           <a
-            href={
-              startupFameLogoLoaded
-                ? "https://startupfa.me/s/blueberry-loom.netlify.app?utm_source=blueberry-loom.netlify.app"
-                : undefined
-            }
+            href={twelveToolsLogoLoaded ? "https://twelve.tools" : undefined}
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -595,25 +673,62 @@ const Footer: React.FC<FooterProps> = ({
               width: 240,
               padding: 4,
               textDecoration: "none",
-              pointerEvents: startupFameLogoLoaded ? "auto" : "none",
+              pointerEvents: twelveToolsLogoLoaded ? "auto" : "none",
             }}
           >
             <img
-              src="https://startupfa.me/badges/featured/dark.webp"
-              alt={startupFameLogoLoaded ? "Blueberry Loom - Featured on Startup Fame" : ""}
-              width={171}
+              src="https://twelve.tools/badge0-white.svg"
+              alt={twelveToolsLogoLoaded ? "Featured on Twelve Tools" : ""}
+              width={200}
               height={54}
               loading="lazy"
-              onLoad={() => setStartupFameLogoLoaded(true)}
-              onError={() => setStartupFameLogoLoaded(false)}
+              onLoad={() => setTwelveToolsLogoLoaded(true)}
+              onError={() => setTwelveToolsLogoLoaded(false)}
               style={{
                 borderRadius: 6,
-                opacity: startupFameLogoLoaded ? 1 : 0.01,
-                height: startupFameLogoLoaded ? "auto" : "1px",
+                opacity: twelveToolsLogoLoaded ? 1 : 0.01,
+                height: twelveToolsLogoLoaded ? "auto" : "1px",
                 transition: "opacity 0.2s ease-out",
               }}
             />
           </a>
+
+          {/* Turbo0 badge */}
+          <div>
+            <a
+              href={
+                turbo0LogoLoaded
+                  ? "https://turbo0.com/item/blueberry-loom"
+                  : undefined
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: 240,
+                padding: 4,
+                textDecoration: "none",
+                pointerEvents: turbo0LogoLoaded ? "auto" : "none",
+              }}
+            >
+              <img
+                src="https://img.turbo0.com/badge-listed-dark.svg"
+                alt={turbo0LogoLoaded ? "Listed on Turbo0" : ""}
+                loading="lazy"
+                onLoad={() => setTurbo0LogoLoaded(true)}
+                onError={() => setTurbo0LogoLoaded(false)}
+                style={{
+                  borderRadius: 6,
+                  height: turbo0LogoLoaded ? 54 : 1,
+                  width: "auto",
+                  opacity: turbo0LogoLoaded ? 1 : 0.01,
+                  transition: "opacity 0.2s ease-out",
+                }}
+              />
+            </a>
+          </div>
         </>
       )}
     </FooterCol>
